@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { getPosts } from "./api/auth";
 import PostsComponent from "./components/PostsComponent";
-import Register from "./components/Register";
+import Register from "./components/RegisterComponent";
 
 
 
@@ -15,8 +15,8 @@ useEffect(() => {
 }, [])
 
 // console.log(posts);
-console.log(password);
-console.log(testPassword);
+// console.log(password);
+// console.log(testPassword);
 
 
   return ( 

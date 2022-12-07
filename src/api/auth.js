@@ -2,6 +2,28 @@ const cohortName = '2211-FTB-ET-WEB-FT';
 
 
 
+export const registerUser = async (username, password) => {
+  try {
+      const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohortName}/users/register`, 
+      {
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/json'
+          },
+      body: JSON.stringify({
+          user: {
+              username,
+              password,
+  }
+})
+})
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+
 export const getPosts = async (setPosts) => {
   // call the API
   // take the returned data and parse into JSON 
