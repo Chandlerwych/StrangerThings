@@ -10,7 +10,7 @@ export const getPosts = async (setPosts) => {
   fetch(`https://strangers-things.herokuapp.com/api/${cohortName}/posts`)
   .then(response => response.json())
   .then(result => {
-    console.log(result.data.posts);
+    // console.log(result.data.posts);
     setPosts(result.data.posts)
   })
   .catch(console.error);
