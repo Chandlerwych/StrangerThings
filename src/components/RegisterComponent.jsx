@@ -11,12 +11,12 @@ const Register = () => {
         onSubmit={async (e) => {
           try {
             e.preventDefault();
-            console.log(
-              "this is username",
-              username,
-              "this is password",
-              password
-            );
+            // console.log(
+            //   "this is username",
+            //   username,
+            //   "this is password",
+            //   password
+            // );
             const token = await registerUser(username, password);
 
             // here we retrive the token from the user via the registeruser function/api above, and save it in local storage to be used elsewhere
