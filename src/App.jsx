@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { getPosts } from "./api/auth";
+import { getPosts, fetchMe } from "./api/auth";
 import PostsComponent from "./components/PostsComponent";
 import Register from "./components/RegisterComponent";
 
 
 
+
 function App() {
  const [posts, setPosts] = useState([]);
+ const [token, setToken] = useState(localStorage.getItem("token"));
 
 useEffect(() => {
   // Need to add something to dependency array to force reruns
   getPosts(setPosts);
 }, [])
+
+useEffect(() => {
+  const getMe = async () => {
+    const data = await fetchMe(token);
+    console.log(data);
+  };
+  getMe();
+}, []);
+
+
 
 // console.log(posts);
 // console.log(password);

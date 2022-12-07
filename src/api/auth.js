@@ -1,7 +1,7 @@
 const cohortName = '2211-FTB-ET-WEB-FT'; 
 
 
-
+// This api call helps to register a user, it is used in the register component 
 export const registerUser = async (username, password) => {
   try {
       const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohortName}/users/register`, 
@@ -16,7 +16,14 @@ export const registerUser = async (username, password) => {
               password,
   }
 })
-})
+});
+//below is the same as assign the token key off data object off the response object which we parsed into JSON aka 
+
+//  data = response.data.token  
+
+const {data: { token }} = await response.json();
+  return token;
+
   } catch (error) {
       console.log(error);
   }
@@ -24,6 +31,9 @@ export const registerUser = async (username, password) => {
 
 
 
+
+
+// this api calls all posts data and helps us post that to the screen. it is used in the posts component 
 export const getPosts = async (setPosts) => {
   // call the API
   // take the returned data and parse into JSON 
@@ -47,3 +57,22 @@ export const getPosts = async (setPosts) => {
 //   }
 }
 
+
+
+export const fetchMe = async (token) => {
+  try {
+    const response = await fetch (`https://strangers-things.herokuapp.com/api/${cohortName}/users/me`, 
+    {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  })
+
+  const data = await response.json();
+
+  return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
