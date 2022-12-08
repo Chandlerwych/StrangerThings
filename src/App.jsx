@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./App.css";
 import { getPosts, fetchMe } from "./api/auth";
-import { Route, Router, Routes, Link, Navigate } from "react-router-dom";
+import { Route, Router, Routes, Link, useNavigate } from "react-router-dom";
 import Register from "./components/RegisterComponent";
 import HomeComponent from "./components/HomeComponent";
 import WelcomePage from "./components/WelcomeComponent";
@@ -12,6 +12,8 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getMe = async () => {
@@ -31,10 +33,8 @@ function App() {
 
   // console.log(token);
   const isLoggedIn = () => {
-    token ? <Navigate to="/home" /> : <Navigate to="/" />;
-    // token ? <HomeComponent /> : <WelcomePage />;
-    // if (token) {
-    //   return <HomeComponent />;
+    token ? navigate("/home") : navigate("/");
+  
   };
 
   useEffect(() => {

@@ -22,7 +22,7 @@ const WelcomePage = ({ setToken }) => {
           }}
         ></input>
         <input
-          type="text"
+          type="password"
           value={password}
           placeholder="Password"
           required
