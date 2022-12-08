@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { getPosts, fetchMe } from "./api/auth";
-import PostsComponent from "./components/PostsComponent";
 import Register from "./components/RegisterComponent";
+import HomeComponent from "./components/HomeComponent";
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
-
-  useEffect(() => {
-    // !Need to add something to dependency array to force reruns
-    getPosts(setPosts);
-  }, []);
 
   useEffect(() => {
     const getMe = async () => {
@@ -21,22 +16,29 @@ function App() {
       setUser(data);
       console.log("user", user);
     };
+    // Only run the getMe function IF a token exists.
     if (token) {
       getMe();
     }
+  }, [token]);
+
+  useEffect(() => {
+    getPosts(setPosts);
   }, []);
 
   return (
-    <div>
-      <h1>{user?.username} Welcome</h1>
-      <h2> to Stranger's Things!</h2>
-      <Register />
+    //Here we are running a ternary statement to check if there is a token
+    //If there IS a token, give me the HomeComponent
+    //If there is NO token, give me the Register page, ya done messed up.
+
+    <div id="container">
+      {token ? (
+        //Have to pass posts as a prop so that we can map over it in the HomeComponent
+        <HomeComponent posts={posts} user={user} />
+      ) : (
+        <Register setToken={setToken} />
+      )}
     </div>
-    // posts.map(singlePost => {
-    //   return (
-    //     <PostsComponent key={singlePost._id} singlePost={singlePost} />
-    //   )}
-    // )
   );
 }
 

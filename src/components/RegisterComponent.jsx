@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { registerUser } from "../api/auth";
 
-const Register = () => {
+const Register = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [testPassword, setTestPassword] = useState("");
+
   return (
     <div>
+      <h1>Welcome</h1>
+      <h2> to Stranger's Things!</h2>
       <form
         onSubmit={async (e) => {
           try {
@@ -18,6 +21,9 @@ const Register = () => {
             //   password
             // );
             const token = await registerUser(username, password);
+
+            // We set the state of token to token in order to force the useEffect to rerender the page (use Effect in App.jsx)
+            setToken(token);
 
             // here we retrive the token from the user via the registeruser function/api above, and save it in local storage to be used elsewhere
             localStorage.setItem("token", token);
