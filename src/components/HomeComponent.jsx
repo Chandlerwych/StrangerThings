@@ -5,7 +5,10 @@ import PostsComponent from "./PostsComponent";
 const HomeComponent = ({ posts, user }) => {
   return (
     <div>
-      <h1>Hello, {user.username}</h1>
+      <header>
+        <h1>Welcome to Stranger's Things, {user.username}!</h1>
+        <button>Log Out</button>
+      </header>
       <h2>Here are your posts!</h2>
       {/* Map through the posts array created in App.jsx and create a new array of the singlePost */}
       {posts.map((singlePost) => {

@@ -42,8 +42,17 @@
 
 h2{
   font-size: 30px;
+  padding-bottom: 20px; 
+  text-decoration: underline;
 }
 
-h1{
+header h1{
   color:red;
+  font-size: 35px; 
+}
+
+header{
+  display: flex; 
+  justify-content: space-around;
+  align-items: center;
 }
