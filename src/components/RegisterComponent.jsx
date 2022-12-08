@@ -13,25 +13,26 @@ const Register = ({ setToken }) => {
 
       <form
         onSubmit={async (e) => {
-          try {
-            e.preventDefault();
-            const token = await registerUser(username, password);
-            
-            // We set the state of token to token in order to force the useEffect to rerender the page (use Effect in App.jsx)
-            setToken(token);
+          if (password === testPassword) {
+            // setIsTrue(!isTrue);   ** this is a way to tell a user passwords dont match on screen per Steven
 
-            // here we retrive the token from the user via the registeruser function/api above, and save it in local storage to be used elsewhere
-            localStorage.setItem("token", token);
+            try {
+              e.preventDefault();
+              const token = await registerUser(username, password);
 
-            // the if/else below determines if the passwords match or not
-            if (password === testPassword) {
-              // setIsTrue(!isTrue);   ** this is a way to tell a user passwords dont match on screen per Steven
+              // We set the state of token to token in order to force the useEffect to rerender the page (use Effect in App.jsx)
+              setToken(token);
+
+              // here we retrive the token from the user via the registeruser function/api above, and save it in local storage to be used elsewhere
+              localStorage.setItem("token", token);
+
+              // the if/else below determines if the passwords match or not
               console.log("I am working!");
-            } else {
-              console.log("I am not the same");
+            } catch (error) {
+              console.error(error);
             }
-          } catch (error) {
-            console.error(error);
+          } else {
+            alert("These passwords are not the same!");
           }
         }}
       >
