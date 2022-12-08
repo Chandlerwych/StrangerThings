@@ -12,8 +12,8 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
-
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const getMe = async () => {
@@ -31,15 +31,17 @@ function App() {
     getPosts(setPosts);
   }, []);
 
-  // console.log(token);
+  
+  // this function checks the state of token, if yes (aka you are signed in and have a token), then render the home page, ELSE (aka you don't have a token and are not signed in) render the signin page 
   const isLoggedIn = () => {
     token ? navigate("/home") : navigate("/");
-  
   };
-
+// tells us to run the isloggedin function everytime the state of token changes to setermine if someone is signed in
   useEffect(() => {
     isLoggedIn();
   }, [token]);
+
+
 
   return (
     <div id="container">

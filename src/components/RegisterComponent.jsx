@@ -15,14 +15,8 @@ const Register = ({ setToken }) => {
         onSubmit={async (e) => {
           try {
             e.preventDefault();
-            // console.log(
-            //   "this is username",
-            //   username,
-            //   "this is password",
-            //   password
-            // );
             const token = await registerUser(username, password);
-
+            
             // We set the state of token to token in order to force the useEffect to rerender the page (use Effect in App.jsx)
             setToken(token);
 

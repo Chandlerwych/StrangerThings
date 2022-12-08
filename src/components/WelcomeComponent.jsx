@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Register from "./RegisterComponent";
 import { Link } from "react-router-dom";
+import { fetchLoginUser } from "../api/auth";
 
 const WelcomePage = ({ setToken }) => {
   const [username, setUsername] = useState("");
@@ -9,7 +10,21 @@ const WelcomePage = ({ setToken }) => {
   return (
     // return the login screen with a register component/redirect for new user registration if clicked
     <div>
-      <form>
+      <form 
+      onSubmit={async (e) => {
+        try {
+          e.preventDefault();
+          // use loginUser to go to API and pull token if you are already registered user 
+          const token = await fetchLoginUser(username, password);
+          setToken(token);
+          localStorage.setItem("token", token);
+        } catch (error) {
+          console.error(error);
+        }
+      }}
+      >
+      
+      
         <h1>Welcome</h1>
         <h2> to Stranger's Things!</h2>
         <input
@@ -32,6 +47,9 @@ const WelcomePage = ({ setToken }) => {
         ></input>
         <button>Login Existing User</button>
       </form>
+
+
+
       <Link to="/register">
         New users, click here to setup your new account!
       </Link>

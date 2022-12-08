@@ -76,3 +76,58 @@ export const fetchMe = async (token) => {
     console.error(error);
   }
 }
+
+
+export const fetchLoginUser = async (username, password) => {
+  try {
+    const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohortName}/users/login`, 
+    {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    body: JSON.stringify({
+        user: {
+            username,
+            password,
+}
+})
+});
+//below is the same as assign the token key off data object off the response object which we parsed into JSON aka 
+
+//  data = response.data.token  
+
+const {data: { token }} = await response.json();
+console.log(token);
+return token;
+
+} catch (error) {
+    console.log(error);
+}
+};
+
+
+
+
+
+
+
+  //   try {
+//     const response = await fetch (`https://strangers-things.herokuapp.com/api/${cohortName}/users/login`, 
+//     {
+//       method: "POST",
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//   body: JSON.stringify({
+//     user: {
+//       username,
+//       password,
+//     }
+//   })
+//   } catch (error) {
+//     console.error(error);
+//   }
+// )
+// }
+// };
