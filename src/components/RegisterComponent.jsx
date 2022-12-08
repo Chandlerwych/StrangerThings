@@ -10,6 +10,7 @@ const Register = ({ setToken }) => {
     <div>
       <h1>Welcome</h1>
       <h2> to Stranger's Things!</h2>
+      
       <form
         onSubmit={async (e) => {
           try {
@@ -73,7 +74,7 @@ const Register = ({ setToken }) => {
           }}
         ></input>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Register New User</button>
       </form>
     </div>
   );
