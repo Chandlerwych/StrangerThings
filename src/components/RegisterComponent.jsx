@@ -8,9 +8,9 @@ const Register = ({ setToken }) => {
 
   return (
     <div>
-      <h1>Welcome</h1>
-      <h2> to Stranger's Things!</h2>
-      
+      <h1>Hi there!</h1>
+      <h2> Please register below</h2>
+
       <form
         onSubmit={async (e) => {
           try {
