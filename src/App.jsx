@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./App.css";
 import { getPosts, fetchMe } from "./api/auth";
-import { Route, Router, Routes  } from "react-router-dom";
+import { Route, Router, Routes, Link, Navigate } from "react-router-dom";
 import Register from "./components/RegisterComponent";
 import HomeComponent from "./components/HomeComponent";
 import WelcomePage from "./components/WelcomeComponent";
@@ -29,32 +29,36 @@ function App() {
     getPosts(setPosts);
   }, []);
 
-console.log(token);
+  // console.log(token);
+  const isLoggedIn = () => {
+    token ? <Navigate to="/home" /> : <Navigate to="/" />;
+    // token ? <HomeComponent /> : <WelcomePage />;
+    // if (token) {
+    //   return <HomeComponent />;
+  };
+
+  useEffect(() => {
+    isLoggedIn();
+  }, [token]);
 
   return (
     <div id="container">
-    
       <Routes>
-        <Route 
-          path='/' 
-          element={<WelcomePage 
-          setToken={setToken} />}>
+        <Route path="/" element={<WelcomePage setToken={setToken} />}></Route>
+        <Route
+          path="/home"
+          element={
+            <HomeComponent posts={posts} user={user} setToken={setToken} />
+          }
+        ></Route>
+        <Route path="/register" element={<Register setToken={setToken} />}>
+          {" "}
         </Route>
-        <Route 
-          path='/home' 
-          element={<HomeComponent 
-            posts={posts} 
-            user={user} 
-            setToken={setToken} />}>
+        <Route path="*" element={<ErrorComponent />}>
+          {" "}
         </Route>
-        <Route 
-          path='/register' 
-          element={<Register setToken={setToken}/>}> </Route>
-        <Route path='*' element={<ErrorComponent />}> </Route>
       </Routes>
-  
     </div>
-    
   );
 }
 
