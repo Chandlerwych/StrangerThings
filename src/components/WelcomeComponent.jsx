@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Register from "./RegisterComponent";
+import { Link } from "react-router-dom";
 
 
 
@@ -7,10 +8,14 @@ const WelcomePage = ({setToken}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+
+
+
+
+
   return (
     
     // return the login screen with a register component/redirect for new user registration if clicked 
-
     <div>
       <form>
         <input type="text"
@@ -33,13 +38,9 @@ const WelcomePage = ({setToken}) => {
         </input>
         <button>Login Existing User</button>
       </form>
-
-      <button onClick ={() => {
-      <Register setToken={setToken}/>
-    }}>
-        New users, click here to setup your new account!</button>
+      <Link to='/register'>New users, click here to setup your new account!</Link>
     </div>
-  )
+    )
 };
 
 
