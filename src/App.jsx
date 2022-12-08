@@ -43,19 +43,16 @@ console.log(token);
         <Route 
           path='/home' 
           element={<HomeComponent 
-          posts={posts} 
-          user={user} 
-          setToken={setToken} />}>
+            posts={posts} 
+            user={user} 
+            setToken={setToken} />}>
         </Route>
-        <Route path='/register' element={<Register />}> </Route>
+        <Route 
+          path='/register' 
+          element={<Register setToken={setToken}/>}> </Route>
         <Route path='*' element={<ErrorComponent />}> </Route>
       </Routes>
-    
-    
-    
   
-    
-
     </div>
     
   );
