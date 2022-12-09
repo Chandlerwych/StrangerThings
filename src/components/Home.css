@@ -44,5 +44,21 @@ h2{
     gap: 1rem;
   }
 
+  .notice{
+    margin-bottom: 2rem; 
+    font-style: italic;
+    color: orange;
+    border: 1px solid black;
+    padding: 2rem; 
+    margin-right: -400px; 
+  }
+
+  .notice-container{
+    display: flex; 
+    margin-top: 2rem; 
+    gap: 5rem; 
+
+  }
+
   
 

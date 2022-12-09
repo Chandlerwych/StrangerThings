@@ -12,8 +12,12 @@ const GuestHome = ({ posts }) => {
         </div>
       </header>
       <div className="posts">
-        <h2>Here are the posts:</h2>
-        <h3>If you would like to make a post, please Register above.</h3>
+        <section className="notice-container">
+          <h2>Here are the posts:</h2>
+          <h3 className="notice">
+            If you would like to make a post, please Register above.
+          </h3>
+        </section>
         {/* Map through the posts array created in App.jsx and create a new array of the singlePost */}
         {posts.map((singlePost) => {
           // Run PostsComponent with the following Props and give me that HTML on my page. BooYah.
