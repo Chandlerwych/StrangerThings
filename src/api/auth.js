@@ -107,7 +107,34 @@ return token;
 };
 
 
+export const createNewPost = async (title, description, price) => {
+  // e.preventDefault();
+  const token = window.localStorage.getItem("token");
 
+  try {
+    const response = await fetch (`https://strangers-things.herokuapp.com/api/${cohortName}/posts`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: {
+          title,
+          description,
+          price,
+          willDeliver: true
+        }
+      })
+    });
+    // const {data: { post }} = await response.json();
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 

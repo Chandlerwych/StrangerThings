@@ -1,34 +1,27 @@
 import React, { useState } from "react";
+import { createNewPost } from "../api/auth";
 
-const createNewPost = async (post) => {
-  e.preventDefault();
-  try {
-    const response = await fetch(
-      `https://strangers-things.herokuapp.com/api/${cohortName}/posts`,
-      {
-        method: "POST",
-        body: JSON.stringify(post),
-        headers: {
-          "content-type": "application/json; charset=UTF-8",
-        },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const Post = (posts) => {
+export const Post = ({posts, setPosts}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
   return (
     <div>
-      <form>
+      <form onSubmit={async () => {
+        try {
+          // e.preventDefault();
+          const newPost = await createNewPost(title, description, price);
+          console.log('this is onSubmit Post function',newPost);
+        setPosts([newPost, ...posts]);
+
+        } catch (error) {
+          console.log(error);
+        }
+        
+        
+        
+      }}>
         <h1>New Post</h1>
         <input
           type="text"
@@ -57,15 +50,7 @@ export const Post = (posts) => {
             setPrice(e.target.value);
           }}
         ></input>
-        <button
-          onClick={async () => {
-            e.preventDefault();
-            const newPost = await createNewPost();
-            console.log(newPost);
-            setPosts([newPost, ...posts]);
-            console.log(posts);
-          }}
-        >
+        <button type="submit">
           Create New Post
         </button>
       </form>
