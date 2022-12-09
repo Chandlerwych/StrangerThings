@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import "./components/Home.css";
 import { getPosts, fetchMe } from "./api/auth";
-import { Route, Router, Routes, Link, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Register from "./components/RegisterComponent";
 import HomeComponent from "./components/HomeComponent";
 import WelcomePage from "./components/WelcomeComponent";
 import ErrorComponent from "./components/ErrorComponent";
 import Profile from "./components/Profile";
-import Nav from "./components/Nav";
+import GuestHome from "./components/GuestHome";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -54,6 +54,7 @@ function App() {
         <Route path="/register" element={<Register setToken={setToken} />}>
           {" "}
         </Route>
+        <Route path="/guest" element={<GuestHome posts={posts} />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="*" element={<ErrorComponent />}>
           {" "}

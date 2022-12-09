@@ -46,3 +46,8 @@ header{
   justify-content: space-around;
   align-items: center;
 }
+
+.links{
+  display: flex; 
+  flex-direction: column;
+}

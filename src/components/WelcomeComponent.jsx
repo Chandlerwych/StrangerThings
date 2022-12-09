@@ -43,12 +43,14 @@ const WelcomePage = ({ setToken }) => {
             setPassword(e.target.value);
           }}
         ></input>
-        <button>Login Existing User</button>
+        <button type="submit">Login Existing User</button>
       </form>
-
-      <Link to="/register">
-        New users, click here to setup your new account!
-      </Link>
+      <div className="links">
+        <Link to="/register">
+          New users, click here to setup your new account!
+        </Link>
+        <Link to="/guest">Continue as guest</Link>
+      </div>
     </div>
   );
 };
