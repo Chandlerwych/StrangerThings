@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between; 
+}
+
+.Nav{
+    display: flex; 
+    flex-direction: row; 
+    /* justify-content: flex-end; */
+    align-items: center;
+    gap: 3rem; 
+    margin-right: -30px; 
+}
+
+.Nav:last-child{
+    padding-left: 10px; 
+}
+
+header h1{
+    color:red;
+    font-size: 35px; 
+    text-decoration: underline;
+  }
+
+h2{
+    font-size: 30px;
+    padding-bottom: 20px; 
+    text-decoration: underline;
+    align-self: center;
+    margin-top: 3rem; 
+  }
+
+  .posts{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  
+

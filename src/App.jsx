@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-
 import "./App.css";
+import "./components/Home.css";
 import { getPosts, fetchMe } from "./api/auth";
 import { Route, Router, Routes, Link, useNavigate } from "react-router-dom";
 import Register from "./components/RegisterComponent";
 import HomeComponent from "./components/HomeComponent";
 import WelcomePage from "./components/WelcomeComponent";
 import ErrorComponent from "./components/ErrorComponent";
+import Profile from "./components/Profile";
+import Nav from "./components/Nav";
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const getMe = async () => {
@@ -31,17 +32,14 @@ function App() {
     getPosts(setPosts);
   }, []);
 
-  
-  // this function checks the state of token, if yes (aka you are signed in and have a token), then render the home page, ELSE (aka you don't have a token and are not signed in) render the signin page 
+  // this function checks the state of token, if yes (aka you are signed in and have a token), then render the home page, ELSE (aka you don't have a token and are not signed in) render the signin page
   const isLoggedIn = () => {
     token ? navigate("/home") : navigate("/");
   };
-// tells us to run the isloggedin function everytime the state of token changes to setermine if someone is signed in
+  // tells us to run the isloggedin function everytime the state of token changes to setermine if someone is signed in
   useEffect(() => {
     isLoggedIn();
   }, [token]);
-
-
 
   return (
     <div id="container">
@@ -56,6 +54,7 @@ function App() {
         <Route path="/register" element={<Register setToken={setToken} />}>
           {" "}
         </Route>
+        <Route path="/profile" element={<Profile />}></Route>
         <Route path="*" element={<ErrorComponent />}>
           {" "}
         </Route>
