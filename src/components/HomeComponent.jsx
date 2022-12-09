@@ -1,6 +1,8 @@
 import React from "react";
 import PostsComponent from "./PostsComponent";
 import Nav from "./Nav";
+import createNewPost from "./Post";
+import { Link } from "react-router-dom";
 
 const HomeComponent = ({ posts, user, setToken }) => {
   const handleLogout = () => {
@@ -15,6 +17,7 @@ const HomeComponent = ({ posts, user, setToken }) => {
         <h1>Welcome to Stranger's Things, {user.username}!</h1>
         <div className="Nav">
           <Nav></Nav>
+          <Link to="/post">NewPost</Link>
           <button onClick={handleLogout}>Log Out</button>
         </div>
       </header>

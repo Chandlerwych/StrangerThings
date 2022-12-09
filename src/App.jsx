@@ -9,6 +9,7 @@ import WelcomePage from "./components/WelcomeComponent";
 import ErrorComponent from "./components/ErrorComponent";
 import Profile from "./components/Profile";
 import GuestHome from "./components/GuestHome";
+import { Post } from "./components/Post";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -48,13 +49,22 @@ function App() {
         <Route
           path="/home"
           element={
-            <HomeComponent posts={posts} user={user} setToken={setToken} />
+            <HomeComponent
+              posts={posts}
+              setPosts={setPosts}
+              user={user}
+              setToken={setToken}
+            />
           }
         ></Route>
         <Route path="/register" element={<Register setToken={setToken} />}>
           {" "}
         </Route>
         <Route path="/guest" element={<GuestHome posts={posts} />}></Route>
+        <Route
+          path="/post"
+          element={<Post posts={posts} setPosts={setPosts} />}
+        ></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="*" element={<ErrorComponent />}>
           {" "}
