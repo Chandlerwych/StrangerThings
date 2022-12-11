@@ -40,14 +40,13 @@
   color: #888;
 }
 
-
-header{
-  display: flex; 
+header {
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.links{
-  display: flex; 
+.links {
+  display: flex;
   flex-direction: column;
 }

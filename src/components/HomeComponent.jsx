@@ -18,7 +18,7 @@ const HomeComponent = ({ posts, user, setToken }) => {
         <div className="Nav">
           <Nav></Nav>
           <Link to="/post">NewPost</Link>
-          <button onClick={handleLogout}>Log Out</button>
+          <button className="logoutbutton" onClick={handleLogout}>Log Out</button>
         </div>
       </header>
       <div className="posts">
